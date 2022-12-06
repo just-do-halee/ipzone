@@ -1,0 +1,30 @@
+[package]
+name = "ipzone"
+authors = ["just-do-halee <just.do.halee@gmail.com>"]
+version = "0.1.0"
+edition = "2021"
+categories = ["network-programming", "data-structures", "rust-patterns"]
+keywords = ["ip", "network", "address", "net", "addr"]
+description = "Ipzone provides a simple and powerful IP architecture to Rust."
+homepage = "https://github.com/just-do-halee/ipzone"
+repository = "https://github.com/just-do-halee/ipzone.git"
+documentation = "https://docs.rs/ipzone"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+
+exclude = [".gitignore", ".github/", "assets/"]
+
+[dependencies]
+serde_json = { version = "1.0.89", optional = true }
+
+[dev-dependencies]
+serde_json = "1.0.89"
+
+[features]
+default = []
+json = ["serde_json"]
+
+[[example]]
+name = "simple"
+path = "examples/simple.rs"
+required-features = ["json"]
