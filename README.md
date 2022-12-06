@@ -35,12 +35,14 @@ const LOCAL: Localhost<3> = Localhost([6004, 7040, 8080]);
 
 ```rust
 // From environment variables
+
 let local = Localhost([6004, 7040, port::from_env!("PORT")]);
 // unwrap_or(8080) version is port::from_env!("PORT", 8080)
 ```
 
 ```rust
 // From json files (features = "json")
+
 // -- ../ports.json --
 // [ 1234, 5678, 9101, 4321 ]
 let local = Localhost(port::from_json!("../ports.json"; 4));
@@ -50,10 +52,8 @@ let local = Localhost(port::from_json!("../ports.json"; 4));
 ```rust
 // Concatenating
 let ports: [u16; 4] = port::concatn!(
-        [
-            [1234, port::from_env!("PORT")]
-            port::from_json!("../ports.json"; 2)
-        ]
+        [1234, port::from_env!("PORT")],
+        port::from_json!("../ports.json"; 2)
     );
 
 let local = Localhost(ports);
