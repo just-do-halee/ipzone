@@ -48,7 +48,7 @@ let local = Localhost(port::from_json!("../ports.json"; 4));
 ```
 
 ```rust
-// Cconcatenating
+// Concatenating
 let ports: [u16; 4] = port::concatn!(
         [
             [1234, port::from_env!("PORT")]
