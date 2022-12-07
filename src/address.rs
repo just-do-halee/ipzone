@@ -5,12 +5,15 @@ use std::{array, io};
 pub struct Address<const N: usize>(pub Ip, pub [Port; N]);
 
 impl<const N: usize> Address<N> {
+    #[inline]
     pub fn first(&self) -> SocketAddr {
         SocketAddr::new(self.0, self.1[0].into())
     }
+    #[inline]
     pub fn last(&self) -> SocketAddr {
         SocketAddr::new(self.0, self.1[N - 1].into())
     }
+    #[inline]
     pub fn iter(&self) -> array::IntoIter<SocketAddr, N> {
         self.into_iter()
     }
