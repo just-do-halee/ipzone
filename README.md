@@ -19,7 +19,7 @@ Ipzone provides a simple and powerful IP architecture to Rust.
 | [Examples](./examples/) | [Docs](https://docs.rs/ipzone) | [Latest Note](./CHANGELOG.md) |
 
 ```toml
-ipzone = "0.1.0"
+ipzone = "0.2.0"
 ```
 
 ## **`Examples`**
@@ -27,35 +27,30 @@ ipzone = "0.1.0"
 ```rust
 use ipzone::prelude::*;
 
-const LOCAL: Localhost<3> = Localhost([6004, 7040, 8080]);
+let local: Address<3> = ip::localhost([6004, 7040, 8080]);
+TcpListener::bind(local);
 
-// Localhost has implemented ToSocketAddrs trait so
-// can server.bind(LOCAL);
-```
+let address: Address<2> = ip::from([168, 159, 42, 9]).with([80, 443]);
+TcpStream::connect(address);
 
-```rust
-// From environment variables
+let local = ip::localhost([port::from_env("PORT").unwrap_or(8080), 7020, 2020]);
+TcpListener::bind(local);
 
-let local = Localhost([6004, 7040, port::from_env!("PORT")]);
-// unwrap_or(8080) version is port::from_env!("PORT", 8080)
-```
+let address = ip::from([186, 23, 123, 1, 0, 0, 0, 0]).with(["80", "443"]);
+TcpStream::connect(address);
 
-```rust
-// From json files (features = "json")
+let local = ip::localhost([1234, 5678, port::from_str("9090").unwrap());
+TcpListener::bind(local);
 
-// -- ../ports.json --
-// [ 1234, 5678, 9101, 4321 ]
-let local = Localhost(port::from_json!("../ports.json"; 4));
-// can truncate it, port::from_json("../ports.json"; 2) = [ 1234, 5678 ]
-```
+let address = ip::from_str("168.24.41.123").unwrap().with([80, 443]);
+TcpStream::connect(address);
 
-```rust
-// Concatenating
-let ports: [u16; 4] = port::concatn!(
-        [1234, port::from_env!("PORT")],
-        port::from_json!("../ports.json"; 2)
-    );
+let local = ip::from_str("::1").unwrap().with([80, 443]);
+TcpListener::bind(local);
 
-let local = Localhost(ports);
+let address = ip::from_env("IP").unwrap().with(["80", "443"]);
+TcpStream::connect(address);
+
+static LOCALHOST: Global<Address<2>> = global(|| ip::localhost().with([80, 443]));
 ```
 
