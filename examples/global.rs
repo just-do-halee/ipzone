@@ -2,10 +2,7 @@ use std::net::{TcpListener, TcpStream};
 
 use ipzone::prelude::*;
 
-static LOCALHOST: Global<Address<3>> = global(|| {
-    // ...
-    ip::localhost().with([8080, 9090, 2424])
-});
+static LOCALHOST: Global<Address> = global(|| ip::localhost().with([8080]));
 
 static NODE: Global<Address<2>> = global(|| {
     //

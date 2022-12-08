@@ -2,7 +2,7 @@ use super::*;
 use std::{array, io};
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub struct Address<const N: usize>(pub Ip, pub [Port; N]);
+pub struct Address<const N: usize = 1>(pub Ip, pub [Port; N]);
 
 impl<const N: usize> Address<N> {
     #[inline]
