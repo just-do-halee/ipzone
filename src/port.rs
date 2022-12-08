@@ -14,6 +14,7 @@ pub fn from_env(key: &str) -> Result<u16, FromEnvError> {
     _from_env(key)
 }
 
+#[repr(transparent)]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub struct Port(pub u16);
 
