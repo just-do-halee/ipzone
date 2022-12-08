@@ -19,7 +19,7 @@ Ipzone provides a simple and powerful IP architecture to Rust.
 | [Examples](./examples/) | [Docs](https://docs.rs/ipzone) | [Latest Note](./CHANGELOG.md) |
 
 ```toml
-ipzone = "0.2.0"
+ipzone = "0.3.0"
 ```
 
 ## **`Examples`**
@@ -36,7 +36,7 @@ TcpStream::connect(address);
 let local = ip::localhost([port::from_env("PORT").unwrap_or(8080), 7020, 2020]);
 TcpListener::bind(local);
 
-let address = ip::from([186, 23, 123, 1, 0, 0, 0, 0]).with(["80", "443"]);
+let address = ip::from([186, 23, 123, 1, 0, 0, 0, 0]).with([80, 443]);
 TcpStream::connect(address);
 
 let local = ip::localhost([1234, 5678, port::from_str("9090").unwrap());
@@ -51,6 +51,6 @@ TcpListener::bind(local);
 let address = ip::from_env("IP").unwrap().with(["80", "443"]);
 TcpStream::connect(address);
 
-static LOCALHOST: Global<Address<2>> = global(|| ip::localhost().with([80, 443]));
+static LOCALHOST: Global<Address> = global(|| ip::localhost().with([8080]));
 ```
 
