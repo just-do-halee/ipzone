@@ -17,7 +17,7 @@ fn it_works() {
 
 #[test]
 fn it_works_for_str() {
-    let ip = ip::from([186, 23, 123, 1]).with(["80", "443", "123", "5678"]);
+    let ip = ip::from([186, 23, 123, 1]).with(["80".parse().unwrap(), 443, 123, 5678]);
     assert_eq!(
         ip.to_socket_addrs().unwrap().collect::<Vec<_>>(),
         vec![

@@ -30,10 +30,12 @@ impl From<u16> for Port {
         Self(port)
     }
 }
-impl From<&str> for Port {
+impl TryFrom<&str> for Port {
+    type Error = ParseIntError;
+
     #[inline]
-    fn from(port: &str) -> Self {
-        Self(port.parse().unwrap())
+    fn try_from(s: &str) -> Result<Self, Self::Error> {
+        Ok(Self(_from_str(s)?))
     }
 }
 impl FromStr for Port {
