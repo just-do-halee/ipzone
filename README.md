@@ -19,7 +19,7 @@ Ipzone provides a simple and powerful IP architecture to Rust.
 | [Examples](./examples/) | [Docs](https://docs.rs/ipzone) | [Latest Note](./CHANGELOG.md) |
 
 ```toml
-ipzone = "0.3.0"
+ipzone = "0.4.0"
 ```
 
 ## **`Examples`**
