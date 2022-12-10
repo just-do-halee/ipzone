@@ -48,7 +48,7 @@ TcpStream::connect(address);
 let local = ip::from_str("::1").unwrap().with([80, 443]);
 TcpListener::bind(local);
 
-let address = ip::from_env("IP").unwrap().with(["80", "443"]);
+let address = ip::from_env("IP").unwrap().with([80, 443]);
 TcpStream::connect(address);
 
 static LOCALHOST: Global<Address> = global(|| ip::localhost().with([8080]));
